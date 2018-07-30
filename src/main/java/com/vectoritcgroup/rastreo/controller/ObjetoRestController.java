@@ -20,7 +20,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.vectoritcgroup.rastreo.model.Objeto;
 import com.vectoritcgroup.rastreo.service.ObjetoService;
 
-
+@CrossOrigin(origins = "https://app-rastreo-web.herokuapp.com", maxAge = 3600)
 @RestController
 public class ObjetoRestController {
 	
