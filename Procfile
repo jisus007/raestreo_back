@@ -1,0 +1,1 @@
+web: java -jar target/osAdmon-1.0.jar
