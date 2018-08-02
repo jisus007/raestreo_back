@@ -47,7 +47,7 @@ public class UbicacionRestController {
 	@RequestMapping(value = "/ubicacionPorFecha", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE )
 	public ResponseEntity<List<Ubicacion>> getObjetos(@RequestBody Ubicacion ubicacion){
 		System.out.println("Consultando ubicaciones por fechas " + ubicacion.getFechaInicio() + " -" +ubicacion.getFechaFin());
-		List<Ubicacion> ubicaciones = ubicacionService.getTravels(ubicacion.getIdObjeto().getIdObjeto(), ubicacion.getFechaFin(), ubicacion.getFechaFin());
+		List<Ubicacion> ubicaciones = ubicacionService.getTravels(ubicacion.getIdObjeto().getIdObjeto(), ubicacion.getFechaInicio(), ubicacion.getFechaFin());
 		
 		if(ubicaciones.isEmpty()) {
 			 System.out.println("Ubicacion with idObjeto " + ubicacion.getIdObjeto().getIdObjeto() + " not found");
