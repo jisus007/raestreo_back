@@ -3,8 +3,6 @@ package com.vectoritcgroup.rastreo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.vectoritcgroup.rastreo.model.Objeto;
 import com.vectoritcgroup.rastreo.model.Ubicacion;
 import com.vectoritcgroup.rastreo.repository.UbicacionRepository;
 
@@ -12,9 +10,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 @Service
 public class UbicacionImpl implements UbicacionService {
 
+
+    @PersistenceContext
+    private EntityManager em;
+	
 	@Autowired
 	private UbicacionRepository ubicacionRepository;
 
@@ -48,7 +53,31 @@ public class UbicacionImpl implements UbicacionService {
 		
 		return travels;
 		
+	}
+	
+	@Override
+	public List<Ubicacion> getTravelsToday(long idobjeto) {
+
+		System.out.println("----searching for today------");
 		
+		List<Ubicacion> travels = new ArrayList<>();
 		
+		ubicacionRepository.findByToday(idobjeto).forEach(travels::add);
+		
+		return travels;
+
+	}
+	
+	@Override
+	public List<Ubicacion> getLastTravel(long idobjeto) {
+
+		System.out.println("----last ubication------");
+		
+		List<Ubicacion> travels = new ArrayList<>();
+		
+		ubicacionRepository.findByLastTravel(idobjeto).forEach(travels::add);
+		
+		return travels;
+
 	}
 }

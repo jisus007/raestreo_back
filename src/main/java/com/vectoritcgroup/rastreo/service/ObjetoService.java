@@ -14,7 +14,7 @@ public interface ObjetoService {
 
     Objeto saveObjeto(Objeto user);
 
-    Objeto updateObjeto(Objeto user);
+    void updateObjeto(long id, String status);
 
 	void deleteObjetoById(long id);
 

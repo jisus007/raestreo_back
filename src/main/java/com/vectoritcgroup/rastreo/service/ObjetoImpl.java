@@ -43,8 +43,8 @@ public class ObjetoImpl implements ObjetoService {
 	}
 
 	@Override
-	public Objeto updateObjeto(Objeto objeto) {
-		return objetoRepository.save(objeto);
+	public void updateObjeto(long id, String status) {
+		 objetoRepository.updateStatus(id, status);
 	}
 
 	@Override

@@ -3,7 +3,14 @@ package com.vectoritcgroup.rastreo.utils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+import com.vectoritcgroup.rastreo.model.Error;
+
+@Component
 public class Utilerias {
 	
 	/**
@@ -51,4 +58,26 @@ public class Utilerias {
 		long l = Long.parseLong(dto);
 		return l;
 	}
+	
+	/**
+	 * Metodo para vealuar respuesta
+	 * @param entity
+	 * @return
+	 */
+	public HashMap<String, Object> evaluateResponse(List<?> entity){
+		HashMap<String, Object> hmap = new HashMap<String, Object>();
+		
+		Error error = new Error();
+	
+		if(entity.isEmpty()) {
+			 error.setCode(1);
+			 error.setMessage("No existen Registros");
+		}
+		
+		hmap.put("error", error);
+		hmap.put("lista", entity);
+		
+		return hmap;
+	}
+	
 }

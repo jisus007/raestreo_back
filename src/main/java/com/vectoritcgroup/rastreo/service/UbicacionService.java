@@ -15,5 +15,9 @@ public interface UbicacionService {
     Ubicacion saveUbicacion(Ubicacion ubicacion);
     
     List<Ubicacion> getTravels(long idObjeto, Date fechaInicio, Date FechaFin);
+    
+    List<Ubicacion> getTravelsToday(long idObjeto);
+    
+    List<Ubicacion> getLastTravel(long idObjeto);
 
 }
