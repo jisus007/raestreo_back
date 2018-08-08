@@ -25,7 +25,7 @@ public interface UbicacionRepository extends CrudRepository<Ubicacion, Ubicacion
 	@Query( value = " select * from ubicacion u where u.id_objeto = :id  and cast(u.fecha as date) = current_date ", nativeQuery = true)
 	List<Ubicacion> findByToday(@Param("id") long id);
 	
-	@Query( value = " select * from ubicacion u where u.id_objeto = :id  and cast(u.fecha as date) = current_date order by u.fecha desc LIMIT 1 ", nativeQuery = true)
+	@Query( value = " select * from ubicacion u where u.id_objeto = :id order by u.fecha desc LIMIT 1 ", nativeQuery = true)
 	List<Ubicacion> findByLastTravel(@Param("id") long id);
 	
 
