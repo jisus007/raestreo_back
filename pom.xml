@@ -92,6 +92,12 @@
 			<artifactId>postgresql</artifactId>
 			<version>42.2.1</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>3.2.0</version>
+		</dependency>
 
 		<!-- Java Servlet y JSP -->
 		<dependency>

@@ -21,6 +21,8 @@ public class Objeto implements Serializable {
 	private String fecAlta;
 	private String fecActualizacion;
 	private String status;
+	
+	
 	public long getIdObjeto() {
 		return idObjeto;
 	}

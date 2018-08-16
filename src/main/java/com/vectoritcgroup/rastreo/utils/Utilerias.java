@@ -1,7 +1,9 @@
 package com.vectoritcgroup.rastreo.utils;
 
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -79,5 +81,35 @@ public class Utilerias {
 		
 		return hmap;
 	}
+	
+	
+	public byte[] imageCode(String cadena) {
+		
+		byte[] image = null;
+		
+		try {
+			image = Base64.getEncoder().encode(cadena.getBytes());
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+		
+		return image;
+	}
+	
+	public String decodeImge(byte[] image) {
+	String imageDecode = new String();
+		try {
+			byte[] decodedString = Base64.getDecoder().decode(new String(image).getBytes("UTF-8"));
+			imageDecode.valueOf(decodedString);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return imageDecode;
+	}
+	
 	
 }

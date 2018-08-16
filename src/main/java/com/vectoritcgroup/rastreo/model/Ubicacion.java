@@ -26,6 +26,8 @@ public class Ubicacion implements Serializable {
 	private String pais;
 	private String latitud;
 	private String longitud;
+	///private String status;
+	
 	
 	@Transient
 	private Date fechaInicio;
