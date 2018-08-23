@@ -23,7 +23,7 @@ import com.vectoritcgroup.rastreo.service.GrupoService;
 import com.vectoritcgroup.rastreo.utils.Utilerias;
 
 
-@CrossOrigin(origins = "https://app-rastreo-web.herokuapp.com", maxAge = 3600)
+@CrossOrigin(origins = "https://app-rastreo-web.herokuapp.com/", maxAge = 3600)
 @RestController
 public class GrupoRestController {
 	

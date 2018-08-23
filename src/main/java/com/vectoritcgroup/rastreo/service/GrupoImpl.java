@@ -42,6 +42,6 @@ public class GrupoImpl implements GrupoService{
 	
 	@Override
 	public void deleteGrupo(Grupo grupo) {
-		 grupoRepository.delete(grupo);
+		 grupoRepository.deleteGrupo(grupo.getIdGrupo());
 	}
 }

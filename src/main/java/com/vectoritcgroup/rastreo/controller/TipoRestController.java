@@ -21,7 +21,7 @@ import com.vectoritcgroup.rastreo.model.Error;
 import com.vectoritcgroup.rastreo.model.Tipo;
 import com.vectoritcgroup.rastreo.service.TipoService;
 import com.vectoritcgroup.rastreo.utils.Utilerias;
-@CrossOrigin(origins = "https://app-rastreo-web.herokuapp.com", maxAge = 3600)
+@CrossOrigin(origins = "https://app-rastreo-web.herokuapp.com/", maxAge = 3600)
 @RestController
 public class TipoRestController {
 	

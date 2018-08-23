@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Parametro implements Serializable {
@@ -20,6 +22,7 @@ public class Parametro implements Serializable {
 	private String codigo;
 	private String valor;
 	private String status;
+	@Temporal(value = TemporalType.DATE)
 	private Date fecActualizacion;
 	
 	

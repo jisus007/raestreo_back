@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 
@@ -20,11 +22,13 @@ public class Usuario implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
     private long idUsuario;
 	private String nombre;
+	@Temporal(value = TemporalType.DATE)
 	private Date fecha;
 	private String curp;
 	private String rfc;
 	private String numeroLic;
 	private String tipoLic;
+	@Temporal(value = TemporalType.DATE)
 	private Date vigencia;
 	private String correo;
 	private byte[] foto;

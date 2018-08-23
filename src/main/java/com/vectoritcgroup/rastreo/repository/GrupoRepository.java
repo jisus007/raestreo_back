@@ -11,4 +11,7 @@ public interface GrupoRepository extends CrudRepository<Grupo, Long>{
 	
 	@Query("select g from Grupo g where g.idGrupo = :id")
 	Grupo findByIdGrupo(@Param("id") String id);
+	
+	@Query(value = "delete grupo where IdGrupo = :id",  nativeQuery = true)
+	void deleteGrupo(@Param("id") String id);
 }
