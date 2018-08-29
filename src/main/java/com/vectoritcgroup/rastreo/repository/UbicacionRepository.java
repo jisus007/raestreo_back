@@ -22,7 +22,7 @@ public interface UbicacionRepository extends CrudRepository<Ubicacion, Ubicacion
 	@Query("select c from Ubicacion c where c.idObjeto.idObjeto = :id and fecha between :fechaInicio and :fechaFin")
 	List<Ubicacion> findByDates(@Param("id") long id, @Param("fechaInicio") Date fechaInicio,@Param("fechaFin") Date fechaFin);
 
-	@Query( value = " select * from ubicacion u where u.id_objeto = :id  and cast(u.fecha as date) = current_date ", nativeQuery = true)
+	@Query( value = " select * from ubicacion u where u.id_objeto = :id  and cast(u.fecha as date) = current_date-1 ", nativeQuery = true)
 	List<Ubicacion> findByToday(@Param("id") long id);
 	
 	@Query( value = " select * from ubicacion u where u.id_objeto = :id order by u.fecha desc LIMIT 1 ", nativeQuery = true)
