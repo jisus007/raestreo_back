@@ -17,4 +17,9 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long>{
 	@Modifying
 	@Query("update Usuario u set u.estatus = :status  where u.idUsuario = :id")
 	void updateStatus(@Param("id") long idObjeto, @Param("status") String status);
+	
+	
+	@Query("select u from Usuario u where u.correo = :correo")
+	Usuario findByEmail(@Param("correo") String email);
+	
 }

@@ -128,5 +128,26 @@ public class UsuarioRestController {
         return new ResponseEntity<Error>(error,headers, HttpStatus.OK);
 	}
 	
+    @RequestMapping(value = "/usuarioEmail/{email}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?>  getUsuarioEmail(@PathVariable String email, Model model){
+    	System.out.println("Fetching Usuario with id " + email);
+    	
+    	HashMap<String, Object> hmap = new HashMap<String, Object>();
+    	
+    	Error error = new Error();
+    	
+    	Usuario usuario = usuarioService.findByEmail(email);
+        if (usuario == null) {
+            System.out.println("Usuario with id " + email + " not found");
+            error.setCode(1);
+            error.setMessage("No hay informacion");
+        }
+
+        hmap.put("error", error);
+		hmap.put("lista", usuario);
+        
+        return new ResponseEntity<HashMap<String, Object>>(hmap, HttpStatus.OK);
+    }
+	
 	
 }

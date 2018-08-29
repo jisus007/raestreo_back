@@ -13,4 +13,7 @@ public interface UsuarioService {
 	List<Usuario> listAll();
 	
 	void bajaUsuario(long id, String status);
+	
+	Usuario findByEmail(String email);
+	
 }

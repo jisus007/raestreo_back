@@ -1,4 +1,4 @@
-package com.vectoritcgroup.rastreo.model;
+		package com.vectoritcgroup.rastreo.model;
 
 import java.io.Serializable;
 import java.util.Date;

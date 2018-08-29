@@ -8,6 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import com.vectoritcgroup.rastreo.utils.Utilerias;
 import com.vectoritcgroup.rastreo.model.Ubicacion;
 import com.vectoritcgroup.rastreo.model.Error;
 
+@CrossOrigin(origins = "https://app-rastreo-web.herokuapp.com", maxAge = 3600)
 @RestController
 public class UbicacionRestController {
 
@@ -69,7 +71,9 @@ public class UbicacionRestController {
 		
 		HashMap<String, Object> hmap = new HashMap<String, Object>();
 		
+		
 		System.out.println("Consultando ubicaciones por fechas " + ubicacion.getFechaInicio() + " -" +ubicacion.getFechaFin());
+		System.out.println("idObjeto " + ubicacion.getIdObjeto().getIdObjeto());
 		List<Ubicacion> ubicaciones = ubicacionService.getTravels(ubicacion.getIdObjeto().getIdObjeto(), ubicacion.getFechaInicio(), ubicacion.getFechaFin());
 		
 		hmap = utilerias.evaluateResponse(ubicaciones);

@@ -50,6 +50,10 @@ public class UsuarioImpl implements UsuarioService{
 		usuarioRepository.updateStatus(id, status);
 	}
 	
-
+	@Override
+	public Usuario findByEmail(String email) {
+		System.out.println("buscando");
+		return usuarioRepository.findByEmail(email);
+	}
 	
 }
