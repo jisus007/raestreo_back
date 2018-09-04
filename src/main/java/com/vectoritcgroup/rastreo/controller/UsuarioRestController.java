@@ -3,6 +3,7 @@ package com.vectoritcgroup.rastreo.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -38,6 +39,10 @@ public class UsuarioRestController {
 		
 		Error error = new Error();
 	
+		String pswSha = DigestUtils.sha256Hex(usuario.getPassword());
+		
+		usuario.setPassword(pswSha);
+		
 		Usuario usuarioCreado = new Usuario();
 		try {
 			usuarioCreado = usuarioService.saveUsuario(usuario);
@@ -112,7 +117,11 @@ public class UsuarioRestController {
 		System.out.println(String.format("Actualizando usuario [%s]", usuario.getNombre())); 
 		
 		Error error = new Error();
-	
+		
+		String pswSha = DigestUtils.sha256Hex(usuario.getPassword());
+		
+		usuario.setPassword(pswSha);
+		
 		Usuario usuarioCreado = new Usuario();
 		try {
 			usuarioCreado = usuarioService.saveUsuario(usuario);
@@ -137,6 +146,8 @@ public class UsuarioRestController {
     	Error error = new Error();
     	
     	Usuario usuario = usuarioService.findByEmail(email);
+    	
+    	
         if (usuario == null) {
             System.out.println("Usuario with id " + email + " not found");
             error.setCode(1);
