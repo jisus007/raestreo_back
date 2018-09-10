@@ -55,7 +55,7 @@ public class JWTFilter extends GenericFilterBean{
 		
 		ParametroService service = service(request);
 		
-		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Origin", "https://app-rastreo-web.herokuapp.com");
 	    response.setHeader("Access-Control-Allow-Methods", "POST,GET,OPTIONS,DELETE");
 	    response.setHeader("Access-Control-Max-Age", "3600");
 	    response.setHeader("Access-Control-Allow-Headers", "Origin,Content-Type,x-requested-with, authorization");
@@ -85,7 +85,7 @@ public class JWTFilter extends GenericFilterBean{
     			
         		}
         //	}else {
-        		filterChain.doFilter(req, res);
+        		//filterChain.doFilter(req, res);
         //	}
         }
         	
@@ -100,12 +100,15 @@ public class JWTFilter extends GenericFilterBean{
 					.build() ;
 			verifier.verify(token);
 		}catch(SignatureVerificationException e){
+			System.out.println("token invalido");
 			response.sendError(401,"Token Invalido: " + e.getMessage());
 			e.printStackTrace();
 		}catch(TokenExpiredException e) {
+			System.out.println("token expirado");
 			response.sendError(401,"Token expirado: " + e.getMessage());
 			e.printStackTrace();
 		}catch(AlgorithmMismatchException e) {
+			System.out.println("algotimo incorrento");
 			response.sendError(401,"Algoritmo del token incorrecto: " + e.getMessage());
 			e.printStackTrace();
 		}
