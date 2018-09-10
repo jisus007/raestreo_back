@@ -115,13 +115,13 @@ public class JWTFilter extends GenericFilterBean{
 		PublicKey publicKey = null;
 		try {
 			
-			ParametroService service = service(request);
+			//ParametroService service = service(request);
 			
-			Parametro parametro = service.findByIdParametro(13);
+			//Parametro parametro = service.findByIdParametro(13);
 			
-			byte [] decodeValor = Base64.getDecoder().decode(parametro.getValorbd());
+			//byte [] decodeValor = Base64.getDecoder().decode(parametro.getValorbd());
 	    	
-	    	String key = new String(decodeValor);
+	    	//String key = new String(decodeValor);
 	    	
 			KeyFactory kf = KeyFactory.getInstance("RSA");
 			X509EncodedKeySpec spec = new X509EncodedKeySpec(Base64.getDecoder().decode(PUBLIC_KEY));
