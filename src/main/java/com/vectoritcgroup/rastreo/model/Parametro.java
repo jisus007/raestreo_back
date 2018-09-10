@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 public class Parametro implements Serializable {
@@ -20,7 +21,11 @@ public class Parametro implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
     private long idParametro;
 	private String codigo;
+	private byte[] valorbd;
+	
+	@Transient
 	private String valor;
+	
 	private String status;
 	@Temporal(value = TemporalType.DATE)
 	private Date fecActualizacion;
@@ -37,6 +42,15 @@ public class Parametro implements Serializable {
 	}
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
+	}
+	
+
+
+	public byte[] getValorbd() {
+		return valorbd;
+	}
+	public void setValorbd(byte[] valorbd) {
+		this.valorbd = valorbd;
 	}
 	public String getValor() {
 		return valor;

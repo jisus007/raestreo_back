@@ -1,5 +1,6 @@
 package com.vectoritcgroup.rastreo.controller;
 
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 
@@ -21,6 +22,9 @@ import com.vectoritcgroup.rastreo.model.Error;
 import com.vectoritcgroup.rastreo.model.Parametro;
 import com.vectoritcgroup.rastreo.service.ParametroService;
 import com.vectoritcgroup.rastreo.utils.Utilerias;
+
+
+
 @CrossOrigin(origins = "https://app-rastreo-web.herokuapp.com", maxAge = 3600)
 @RestController
 public class ParametroRestController {
@@ -38,6 +42,16 @@ public class ParametroRestController {
 		Error error = new Error();
 	
 		Parametro parametroCreado = new Parametro();
+		
+		System.out.println(parametro.getValor());
+		
+		byte[] keyPublica = Base64.getEncoder().encode(parametro.getValor().getBytes());
+		
+		parametro.setValorbd(keyPublica);
+		
+		
+		System.out.println(keyPublica.toString());
+		
 		try {
 			parametroCreado = parametroService.saveParametro(parametro);
 		}catch (Exception e) {
@@ -63,7 +77,16 @@ public class ParametroRestController {
     	Error error = new Error();
     	
     	Parametro parametro = parametroService.findByIdParametro(id);
-        if (parametro == null) {
+        
+    	byte [] decodeValor = Base64.getDecoder().decode(parametro.getValorbd());
+    	
+    	String key = new String(decodeValor);
+    	
+    	System.out.println(key);
+    	
+    	parametro.setValor(key);
+    	
+    	if (parametro == null) {
             System.out.println("Tipo with id " + id + " not found");
             error.setCode(1);
             error.setMessage("No hay informacion");
