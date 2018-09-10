@@ -39,7 +39,7 @@ import com.vectoritcgroup.rastreo.service.ParametroService;
 
 @CrossOrigin(origins = "https://app-rastreo-web.herokuapp.com", maxAge = 3600)
 @RestController
-//@Configuration
+@Configuration
 public class JWTFilter extends GenericFilterBean{
 	 private ParametroService service;
 	
