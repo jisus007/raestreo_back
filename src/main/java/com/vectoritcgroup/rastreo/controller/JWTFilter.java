@@ -41,7 +41,6 @@ import com.vectoritcgroup.rastreo.service.ParametroService;
 @RestController
 //@Configuration
 public class JWTFilter extends GenericFilterBean{
-	
 	 private ParametroService service;
 	
 	private static final String PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArov/vqjvFrpMd0IxmPkTNpI9mO0IxLfOfPldIF8311tI5bKmxPZCXlxYD8wigAjhFsJHBhHMR8X3oaq8Ld2XhSyROIOwLhtC7W5lWfT/nqcoUBI2OtFAIiqh/zKynFoL7kCsSu8OrIMMRaAuHY4xRfhgvHGvJdAKFeG5FXODOJrw3M/IcY6Zlx3XUEFp/aj68L+r9jGUY4WhFsyUzdQB03nBvF/0f58B1b63P8yU/eYrkKnD8JCWByPKggz4/x2YPC6QDc4AoyW/uZf7JJLICZPykSvBj5o+P43GpI2C+0U/Gk6Czw4Ut4Cz0OTdT6GZ4hX5/qdyBnKwqXsmoCsWQwIDAQAB";
@@ -67,8 +66,8 @@ public class JWTFilter extends GenericFilterBean{
         	System.out.println("OPTIONS");
             response.setStatus(HttpServletResponse.SC_OK);
         }else {
-        	Parametro parametro = service.findByIdParametro(13);
-        	if(parametro.getStatus().equals("A")) {
+        //	Parametro parametro = service.findByIdParametro(13);
+        //	if(parametro.getStatus().equals("A")) {
         		
         		if( Authorization == null || Authorization.isEmpty() ) {
         			System.out.println("Token nulo");
@@ -85,15 +84,16 @@ public class JWTFilter extends GenericFilterBean{
         			filterChain.doFilter(req, res);
     			
         		}
-        	}else {
+        //	}else {
         		filterChain.doFilter(req, res);
-        	}
+        //	}
         }
         	
 	}
 	
 	public void validarToken(String token, HttpServletResponse response, HttpServletRequest request) throws IOException {
 		try {
+			//Algorithm algorithm = Algorithm.RSA256(getPublicKey(request),null);
 			Algorithm algorithm = Algorithm.RSA256(getPublicKey(request),null);
 			JWTVerifier verifier = JWT.require(algorithm)
 					.withIssuer("vector")
@@ -124,7 +124,7 @@ public class JWTFilter extends GenericFilterBean{
 	    	String key = new String(decodeValor);
 	    	
 			KeyFactory kf = KeyFactory.getInstance("RSA");
-			X509EncodedKeySpec spec = new X509EncodedKeySpec(Base64.getDecoder().decode(key));
+			X509EncodedKeySpec spec = new X509EncodedKeySpec(Base64.getDecoder().decode(PUBLIC_KEY));
 			publicKey = kf.generatePublic(spec);
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
