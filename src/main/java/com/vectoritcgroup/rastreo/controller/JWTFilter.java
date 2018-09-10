@@ -66,8 +66,8 @@ public class JWTFilter extends GenericFilterBean{
         	System.out.println("OPTIONS");
             response.setStatus(HttpServletResponse.SC_OK);
         }else {
-        //	Parametro parametro = service.findByIdParametro(13);
-        //	if(parametro.getStatus().equals("A")) {
+        	Parametro parametro = service.findByIdParametro(11);
+        	if(parametro.getStatus().equals("A")) {
         		
         		if( Authorization == null || Authorization.isEmpty() ) {
         			System.out.println("Token nulo");
@@ -84,16 +84,16 @@ public class JWTFilter extends GenericFilterBean{
         			filterChain.doFilter(req, res);
     			
         		}
-        //	}else {
-        		//filterChain.doFilter(req, res);
-        //	}
+        	}else {
+        		filterChain.doFilter(req, res);
+        	}
         }
         	
 	}
 	
 	public void validarToken(String token, HttpServletResponse response, HttpServletRequest request) throws IOException {
 		try {
-			//Algorithm algorithm = Algorithm.RSA256(getPublicKey(request),null);
+			
 			Algorithm algorithm = Algorithm.RSA256(getPublicKey(request),null);
 			JWTVerifier verifier = JWT.require(algorithm)
 					.withIssuer("vector")
@@ -118,16 +118,16 @@ public class JWTFilter extends GenericFilterBean{
 		PublicKey publicKey = null;
 		try {
 			
-			//ParametroService service = service(request);
+			ParametroService service = service(request);
 			
-			//Parametro parametro = service.findByIdParametro(13);
+			Parametro parametro = service.findByIdParametro(11);
 			
-			//byte [] decodeValor = Base64.getDecoder().decode(parametro.getValorbd());
+			byte [] decodeValor = Base64.getDecoder().decode(parametro.getValorbd());
 	    	
-	    	//String key = new String(decodeValor);
+	    	String key = new String(decodeValor);
 	    	
 			KeyFactory kf = KeyFactory.getInstance("RSA");
-			X509EncodedKeySpec spec = new X509EncodedKeySpec(Base64.getDecoder().decode(PUBLIC_KEY));
+			X509EncodedKeySpec spec = new X509EncodedKeySpec(Base64.getDecoder().decode(key));
 			publicKey = kf.generatePublic(spec);
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
